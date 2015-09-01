@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C2AF9AA81B95473D0003E2C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AF9AA71B95473D0003E2C4 /* main.m */; };
+		C2AF9AB01B95476C0003E2C4 /* MADispatchQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AF9AAF1B95476C0003E2C4 /* MADispatchQueue.m */; settings = {ASSET_TAGS = (); }; };
+		C2AF9AB31B954C620003E2C4 /* MAThreadPool.m in Sources */ = {isa = PBXBuildFile; fileRef = C2AF9AB21B954C620003E2C4 /* MAThreadPool.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		C2AF9AA41B95473D0003E2C4 /* MADispatch */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MADispatch; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AF9AA71B95473D0003E2C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		C2AF9AAE1B95476C0003E2C4 /* MADispatchQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MADispatchQueue.h; sourceTree = "<group>"; };
+		C2AF9AAF1B95476C0003E2C4 /* MADispatchQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MADispatchQueue.m; sourceTree = "<group>"; };
+		C2AF9AB11B954C620003E2C4 /* MAThreadPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAThreadPool.h; sourceTree = "<group>"; };
+		C2AF9AB21B954C620003E2C4 /* MAThreadPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAThreadPool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +64,10 @@
 			isa = PBXGroup;
 			children = (
 				C2AF9AA71B95473D0003E2C4 /* main.m */,
+				C2AF9AAE1B95476C0003E2C4 /* MADispatchQueue.h */,
+				C2AF9AAF1B95476C0003E2C4 /* MADispatchQueue.m */,
+				C2AF9AB11B954C620003E2C4 /* MAThreadPool.h */,
+				C2AF9AB21B954C620003E2C4 /* MAThreadPool.m */,
 			);
 			path = MADispatch;
 			sourceTree = "<group>";
@@ -119,6 +129,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C2AF9AA81B95473D0003E2C4 /* main.m in Sources */,
+				C2AF9AB31B954C620003E2C4 /* MAThreadPool.m in Sources */,
+				C2AF9AB01B95476C0003E2C4 /* MADispatchQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
