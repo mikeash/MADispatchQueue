@@ -131,4 +131,18 @@ static void Test(void) {
         ASSERT(maxActiveCount > 1);
         ASSERT(totalRun == 10000);
     });
+    
+    TEST(global, {
+        __block volatile int32_t totalRun = 0;
+        
+        for(int i = 0; i < 10000; i++) {
+            [[MADispatchQueue globalQueue] dispatchAsync: ^{
+                OSAtomicIncrement32(&totalRun);
+            }];
+        }
+        
+        while(totalRun < 10000) {
+            usleep(1000);
+        }
+    });
 }
