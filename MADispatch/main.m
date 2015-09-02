@@ -111,7 +111,7 @@ static void Test(void) {
         
         __block int32_t activeCount = 0;
         __block int32_t maxActiveCount = 0;
-        __block int32_t totalRun = 0;
+        __block volatile int32_t totalRun = 0;
         
         for(int i = 0; i < 10000; i++) {
             [queue dispatchAsync: ^{
