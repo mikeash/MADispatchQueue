@@ -11,16 +11,11 @@
 #import "MAThreadPool.h"
 
 
-enum State {
-    SerialNotRunning,
-    SerialRunning,
-    Concurrent
-};
-
 @implementation MADispatchQueue {
     NSLock *_lock;
     NSMutableArray *_pendingBlocks;
-    enum State _state;
+    BOOL _serial;
+    BOOL _serialRunning;
 }
 
 static MADispatchQueue *gGlobalQueue;
@@ -41,7 +36,7 @@ static MAThreadPool *gThreadPool;
     if ((self = [super init])) {
         _lock = [[NSLock alloc] init];
         _pendingBlocks = [NSMutableArray array];
-        _state = serial ? SerialNotRunning : Concurrent;
+        _serial = serial;
     }
     return self;
 }
@@ -50,10 +45,10 @@ static MAThreadPool *gThreadPool;
     [_lock lock];
     [_pendingBlocks addObject: block];
     
-    if(_state == Concurrent) {
+    if(_serial && !_serialRunning) {
+        _serialRunning = YES;
         [self dispatchOneBlock];
-    } else if (_state == SerialNotRunning) {
-        _state = SerialRunning;
+    } else if (!_serial) {
         [self dispatchOneBlock];
     }
     
@@ -87,11 +82,11 @@ static MAThreadPool *gThreadPool;
         block();
         
         [_lock lock];
-        if (_state == SerialRunning) {
+        if(_serial) {
             if([_pendingBlocks count] > 0) {
                 [self dispatchOneBlock];
             } else {
-                _state = SerialNotRunning;
+                _serialRunning = NO;
             }
         }
         [_lock unlock];
