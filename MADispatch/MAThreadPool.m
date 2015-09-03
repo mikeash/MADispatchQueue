@@ -30,14 +30,16 @@
 
 - (void)addBlock: (dispatch_block_t)block {
     [_lock lock];
-    [_blocks addObject: block];
-    [_lock signal];
     
-    if(_activeThreadCount == _threadCount && _threadCount < _threadCountLimit) {
+    [_blocks addObject: block];
+    
+    NSUInteger idleThreads = _threadCount - _activeThreadCount;
+    if([_blocks count] > idleThreads && _threadCount < _threadCountLimit) {
         [NSThread detachNewThreadSelector: @selector(workerThreadLoop:) toTarget: self withObject: nil];
         _threadCount++;
     }
     
+    [_lock signal];
     [_lock unlock];
 }
 
