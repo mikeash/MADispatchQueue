@@ -35,7 +35,7 @@ static MAThreadPool *gThreadPool;
 - (id)initSerial: (BOOL)serial {
     if ((self = [super init])) {
         _lock = [[NSLock alloc] init];
-        _pendingBlocks = [NSMutableArray array];
+        _pendingBlocks = [[NSMutableArray alloc] init];
         _serial = serial;
     }
     return self;
