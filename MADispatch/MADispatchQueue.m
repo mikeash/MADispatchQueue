@@ -81,15 +81,15 @@ static MAThreadPool *gThreadPool;
         
         block();
         
-        [_lock lock];
         if(_serial) {
+            [_lock lock];
             if([_pendingBlocks count] > 0) {
                 [self dispatchOneBlock];
             } else {
                 _serialRunning = NO;
             }
+            [_lock unlock];
         }
-        [_lock unlock];
     }];
 }
 
